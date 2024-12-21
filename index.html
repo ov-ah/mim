@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIM Instructions</title>
+    <link rel="stylesheet" href="styles.css?version=2">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="h-container">
+        <h1>MIM Instructions</h1>
+        <h2>Multi Input Manager (MIM) is a program created to assist with background tasks like farming in hypixel skyblock but can have other uses. MIM is <span style="color: red;">NOT</span> a macro and complies with hypixel TOS as long as you follow this guide.</h2>
+    </div>
+
+    <div class="content-main">
+        <div class="warning">
+            Please read all tooltips and warnings to ensure you are following hypixels rules!
+        </div>
+
+        <div class="text-main">
+            <p>All files needed to start your project can be found <a href="res/MIM pack.zip" style="a:visited { color: red; }">here</a></p>
+        </div>
+
+        <div class="tooltip">
+            This process will require some coding knowledge but there will be easy to follow examples you can follow use.
+        </div>
+        
+        <div class="ordered-list">
+            <ol>
+                <li>
+                    <h1>Installing Interception Driver</h1>
+                    <div class="tooltip">
+                        Interception drivers and other resources used in MIM can be found at the bottom of this page.
+                    </div>
+                    <p>
+                        Download the project files from above, <span style="color: cyan;">unzip the file</span> and navigate to:
+                    </p>
+                    <div class="textbox-main">
+                        <p>
+                            MIM pack --> Driver Install
+                        </p>
+                    </div>
+                    Open the navigation bar in your file explorer and type:
+                    <div class="textbox-main">
+                        <p>
+                            cmd
+                        </p>
+                    </div>
+                    <img src="res/img/cmd.png">
+                    Then press enter
+                    <br>
+                    A cmd window will open and you can type the following to install the interception driver:
+                    <div class="textbox-main">
+                        <p>
+                            install-interception.exe /install
+                        </p>
+                    </div>
+                    <p>
+                        You will be prompted for administrator privillages, <span style="color: cyan;">click yes</span>, once it finishes you can close cmd and <span style="color: yellow;">restart your computer</span>.
+                    </p>
+                </li>
+                <li>
+                    <h1>
+                        Finding Your Input Device
+                    </h1>
+                    <div class="tooltip">
+                        If autohotkey is not installed you can install it <a href="https://www.autohotkey.com/" target="_blank">here</a>, make sure to install v1.1.
+                    </div>
+                    After autohotkey is installed find 'Monitor.ahk' and open it.
+                    <br>
+                        A screen like this should show up. If it doesnt try installing AHK again:
+                    </p>
+                    <img src="res/img/Monitor.png">
+                    Toggle the 'Only show key releases' option and depending on weather your using a keyboard or a mouse as your secondary input device (for farming) under the Keyboards or Mice section, toggle one device at a time and try pressing a key until you find the correct input device.
+                    <br>
+                    Once you have found the correct input device copy the 'VID/PID' it will look something like this:
+                    <div class="textbox-main">
+                        <p>
+                            0x0ABC, 0x0BCA
+                        </p>
+                    </div>
+                    <div class="tooltip">
+                        Save this for later, you will need it for your script.
+                    </div>
+                </li>
+                <li>
+                    <h1>
+                        Setting Up Your AHK Sript
+                    </h1>
+                    <div class="warning">
+                        If you setup your AHK script incorrectly and are not physically holding down as many keys as your farm requires you <span style="color: red;">ARE BREAKING THE RULES.</span>
+                    </div>
+                    <div class="subtext">
+                        As long as you follow the next couple steps excactly the setup will guide you through a method that is fully safe and complies with the hypixel rules.
+                    </div>
+                    <p>
+                        Create an AHK script by right clicking the <strong>ROOT</strong> directory (of the project) clicking new, autohotkey script
+                    </p>
+                    <img src="res/img/new_ahk.png">
+                    Enter any name you want and then click create.
+                    <br>
+                    To edit the script right click it and click edit script. Alternatively if you have VSC or notepad++ right click open with>VSC/Notepad++
+                    <br>
+                    Paste the following template in, all of the following code is required for most scripts to work.
+                    <div class="textbox-main">
+                        <p style="white-space: pre;">
+#SingleInstance force
+#Persistent
+#include Lib\AutoHotInterception.ahk
+#NoEnv
+SetWorkingDir %A_ScriptDir%
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <h1>
+                        Templates
+                    </h1>
+                    <div class="tooltip">
+                        Reminder to insert <span style="color: cyan;">your own</span> keyboard ID in the keyboardId section.
+                    </div>
+                    This template/example Uses the 'space' and 'alt' keys to hold 'w' and 'space' 
+                    <div class="textbox-main" style="white-space: pre;">
+#SingleInstance force
+#Persistent
+#include Lib\AutoHotInterception.ahk
+#NoEnv
+SetWorkingDir %A_ScriptDir%
+
+; Global variables
+global AHI := new AutoHotInterception()
+global MinecraftWindowTitle := "Minecraft 1.8.9"
+
+; Get keyboard ID and subscribe to space and alt keys
+keyboardId := AHI.GetKeyboardId(<span style="color: cyan;">INSERT YOUR KEYBOARD ID</span>)
+AHI.SubscribeKey(keyboardId, GetKeySC("space"), true, Func("handleSpace"))
+AHI.SubscribeKey(keyboardId, GetKeySC("alt"), true, Func("handleAlt"))
+
+; Handle space key
+handleSpace(state) {
+    global MinecraftWindowTitle
+    IfWinExist, %MinecraftWindowTitle%
+    {
+        if (state = 1) {
+            ControlSend,, {space down}, %MinecraftWindowTitle%
+        } else {
+            ControlSend,, {space up}, %MinecraftWindowTitle%
+        }
+    }
+}
+
+; Handle alt key
+handleAlt(state) {
+    global MinecraftWindowTitle
+    IfWinExist, %MinecraftWindowTitle%
+    {
+        if (state = 1) {
+            ControlSend,, {w down}, %MinecraftWindowTitle%
+        } else {
+            ControlSend,, {w up}, %MinecraftWindowTitle%
+        }
+    }
+}
+                    </div>
+                </li>
+            </ol>
+            <div>
+                <h1>
+                    Credits & Extra Resources:
+                </h1>
+                <h2>
+                    Interception: <a href="https://github.com/oblitum/Interception">GitHub</a>
+                </h2>
+                <h2>
+                    AHI (AutoHotInterception): <a href="https://github.com/evilC/AutoHotInterception">GitHub</a> (includes docs for advanced users)
+                </h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
