@@ -54,8 +54,6 @@ body {
     color: var(--color-alt);
 }
 
-/* Commented out styles for future use */
-/*
 .upload-section {
     background: rgba(255, 255, 255, 0.05);
     border-radius: var(--border-radius);
@@ -135,4 +133,22 @@ body {
     background: yellow;
     color: var(--bg-main);
 }
-*/
+
+.warning,
+.tooltip {
+  padding: var(--spacing);
+  margin: var(--spacing) 0;
+  border-radius: var(--border-radius);
+  border-left: 5px solid;
+}
+
+.warning {
+    background: rgba(255, 0, 0, 0.1);
+    border-left-color: red;
+}
+
+.warning::before {
+    content: 'WARNING: ';
+    color: red;
+    font-weight: bold;
+  }
