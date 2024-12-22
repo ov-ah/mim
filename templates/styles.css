@@ -1,0 +1,138 @@
+:root {
+    --bg-main: #000;
+    --color-main: #fff;
+    --color-alt: #acacac;
+    --max-width: 1000px;
+    --border-radius: 5px;
+    --spacing: 20px;
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url('res/fonts/heading.ttf');
+    font-display: swap;
+  }
+
+body {
+    background-color: var(--bg-main);
+    color: var(--color-main);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.h-container {
+    width: min(100%, 600px);
+    text-align: center;
+    margin: auto;
+    padding: calc(var(--spacing) * 4) var(--spacing) var(--spacing);
+}
+
+.h-container h1 {
+    font-family: 'heading';
+    font-size: clamp(28px, 5vw, 37px);
+    margin: 0 0 var(--spacing);
+}
+
+.h-container h2 {
+    font-size: 16px;
+    color: var(--color-alt);
+    margin: 0;
+    font-weight: normal;
+}
+
+.content-main {
+    width: min(100% - var(--spacing) * 2, var(--max-width));
+    margin: auto;
+    padding: var(--spacing);
+}
+
+.empty-state {
+    text-align: center;
+    padding: calc(var(--spacing) * 4);
+    color: var(--color-alt);
+}
+
+/* Commented out styles for future use */
+/*
+.upload-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: var(--spacing);
+    margin-bottom: var(--spacing);
+    text-align: center;
+}
+
+.upload-button {
+    background: transparent;
+    color: var(--color-main);
+    border: 2px solid var(--color-main);
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+    background: var(--color-main);
+    color: var(--bg-main);
+}
+
+.templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing);
+    padding: var(--spacing) 0;
+}
+
+.template-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: var(--spacing);
+    border: 1px solid var(--color-alt);
+    transition: transform 0.3s ease;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+}
+
+.template-title {
+    font-weight: bold;
+    margin-bottom: var(--spacing);
+    color: var(--color-main);
+}
+
+.template-description {
+    color: var(--color-alt);
+    font-size: 0.9em;
+    margin-bottom: var(--spacing);
+}
+
+.template-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em;
+    color: var(--color-alt);
+}
+
+.download-button {
+    background: transparent;
+    color: yellow;
+    border: 1px solid yellow;
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
+    transition: all 0.3s ease;
+}
+
+.download-button:hover {
+    background: yellow;
+    color: var(--bg-main);
+}
+*/
