@@ -143,10 +143,10 @@ a:hover {
 }
 
 /* Footer */
-footer {
+.footer-1 {
+  border-top: 1px solid #374151;
   margin-top: calc(var(--spacing) * 2);
   padding-top: var(--spacing);
-  border-top: 1px solid var(--color-alt);
 }
 
 /* Responsive */
@@ -187,4 +187,11 @@ footer {
 
 .top-right-button a:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer {
+  border-top: 1px solid #374151;
+  padding: 20px;
+  text-align: center;
+  color: #9ca3af;
 }
